@@ -4,16 +4,16 @@ import axios from "axios";
 import { Blog } from "../../utils/types/blog";
 import toast from "react-hot-toast";
 import { BsArrowDown } from "react-icons/bs";
+import Link from "next/link";
 
-export const fetchAllBlogs = async (
-  cursor?: string
-): Promise<{ blogs: Blog[]; nextCursor?: string }> => {
+export const fetchAllBlogs = async (): Promise<{
+  blogs: Blog[];
+  nextCursor?: string;
+}> => {
   const res = await axios.post(
     `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/all-blogs`,
-    cursor ? { cursor } : {},
-    {
-      withCredentials: true,
-    }
+    {},
+    { withCredentials: true }
   );
 
   if (!res.data?.success) {
@@ -26,6 +26,37 @@ export const fetchAllBlogs = async (
   };
 };
 
+export const fetchMoreBlogs = async (
+  cursor: string
+): Promise<{
+  blogs: Blog[];
+  nextCursor?: string;
+}> => {
+  const formData = new FormData();
+  formData.append("cursor", cursor);
+
+  const res = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/all-blogs`,
+    formData,
+    {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+
+  if (!res.data?.success) {
+    throw new Error("Failed to fetch more blogs");
+  }
+
+  return {
+    blogs: res.data.data,
+    nextCursor: res.data.nextCursor,
+  };
+};
+
+
 const blogMain = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,8 +68,8 @@ const blogMain = () => {
       try {
         const res = await fetchAllBlogs();
         setBlogs(res.blogs);
+        setNextCursor(res.nextCursor ?? null);
       } catch (err) {
-        console.log(err);
         toast.error("Unable to load blogs");
       } finally {
         setLoading(false);
@@ -53,7 +84,7 @@ const blogMain = () => {
     setLoadingMore(true);
 
     try {
-      const res = await fetchAllBlogs(nextCursor);
+      const res = await fetchMoreBlogs(nextCursor);
       setBlogs((prev) => [...prev, ...res.blogs]);
       setNextCursor(res.nextCursor ?? null);
     } catch (err) {
@@ -85,8 +116,9 @@ const blogMain = () => {
         "
         >
           {blogs.map((blog) => (
-            <article
+            <Link
               key={blog.id}
+              href={`/blog/${blog.id}`}
               className="
               bg-white
               hover:shadow-md
@@ -134,7 +166,7 @@ const blogMain = () => {
                   {formatDate(blog.date)}
                 </p>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
