@@ -32,23 +32,37 @@ export const fetchSingleBlog = async (id: string) => {
 
 const page = async ({ params }: PageProps) => {
    const { id } = await params;
+  let blog;
 
   try {
-   const blog = await fetchSingleBlog(id);
-   
+    blog = await fetchSingleBlog(id);
   } catch (error) {
-    // notFound();
-    console.log(error)
+    toast.error("could not get blog info,please refresh the page");
   }
 
-  // if (!blog) {
-  //   notFound();
-  // }
+  if (!blog) {
+    notFound();
+  }
   return (
-    <section>
-      <div className="w-full h-[682px] bg-[#F2F5FB]">
-        <div>{blog.authorName}</div>
+    <section className='flex items-center '>
+      <div className="w-full h-[682px] bg-[#F2F5FB] relative flex items-center justify-center">
+        <div className="w-[1000px] min-h-[753px]  flex flex-col items-center justify-between absolute top-[119px]">
+          <h1 className="font-inter text-[60px] text-[#020827]">
+            {blog.heading}
+          </h1>
+          <p className="font-inter text-[14px] text-[#020827] uppercase  bg-[#FFFFFF] py-[5px] px-[10px]">
+            {blog.categories[0]}
+          </p>
+          <img
+            src={blog.image || "/defaultBlog.jpg"}
+            alt="User blog Image"
+            className="object-cover w-full h-[500px] rounded-[12px]"
+            loading="lazy"
+          />
+        </div>
       </div>
+
+      <div className="mt-[265px] border border-black w-[800px] min-h-[894px] "></div>
     </section>
   );
 };
