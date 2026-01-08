@@ -1,8 +1,10 @@
-import React, {useState} from 'react'
+"use client";
+import React, { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 import { notFound } from "next/navigation";
 import { LuShare } from "react-icons/lu";
+import { useAuthStore } from "@/utils/store/Auth";
 
 interface PageProps {
   params: Promise<{
@@ -25,34 +27,35 @@ export const fetchSingleBlog = async (id: string) => {
     }
   );
   if (!res.data?.success) {
-    toast.error("unable to get blog info, please refresh the page ")
+    // toast.error("unable to get blog info, please refresh the page ")
     throw new Error("Failed to fetch blog");
   }
-  return res.data.data; 
+  return res.data.data;
 };
 
 const page = async ({ params }: PageProps) => {
-   const { id } = await params;
+  const { status } = useAuthStore();
+  const { id } = await params;
   let blog;
 
   try {
     blog = await fetchSingleBlog(id);
   } catch (error) {
-    toast.error("could not get blog info,please refresh the page");
+    // toast.error("could not get blog info,please refresh the page");
   }
 
   if (!blog) {
     notFound();
   }
 
-   const formatDate = (isoDate: string) => {
-     return new Date(isoDate).toLocaleDateString("en-US", {
-       month: "long",
-       day: "numeric",
-       year: "numeric",
-     });
+  const formatDate = (isoDate: string) => {
+    return new Date(isoDate).toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
   };
-  
+
   return (
     <section className="">
       <div className="w-full h-[682px] bg-[#F2F5FB] relative flex items-center justify-center">
@@ -73,7 +76,7 @@ const page = async ({ params }: PageProps) => {
       </div>
 
       <div className="mt-[265px] border border-black w-[800px] min-h-[894px] w-full flex items-center justify-center">
-        <div className=" w-[800px] min-h-[894px] border border-red-500">
+        <div className=" w-[800px] min-h-[894px] border border-red-500 flex flex-col items-start justify-between">
           <div className="w-full h-[41px] flex items-center justify-between">
             <div className="min-w-[241px] h-full flex items-center justify-between">
               <img
@@ -99,11 +102,52 @@ const page = async ({ params }: PageProps) => {
               </button>
             </div>
           </div>
-          
+
+          <div className="w-full min-h-[200px] flex flex-col justify-between items-start border border-black mt-[100px]">
+            <p className="font-inter text-[18px] leading-[170%] text-[#747788]">
+              {blog.body}
+            </p>
+            <div className="mt-[10px]">
+              <h2 className="font-inter text-[30px] leading-[170%] font-[600] text-[#020827]">
+                Key Takeaways
+              </h2>
+              {blog.keyTakeaways?.length ? (
+                <ul>
+                  {blog.keyTakeaways.map((item: any, index: number) => (
+                    <li
+                      key={index}
+                      className="font-inter text-[18px] leading-[170%] text-[#747788]"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-gray-500">
+                  No key takeaways provided.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <h1 className="font-inter font-[600] text-[50px] text-[#020827] ">
+              Comments ({blog.comments?.length || 0})
+            </h1>
+            {status === "authenticated" ? (
+              <p>kdkdkdkddk</p>
+            ) : status === "unauthenticated" ? (
+              <p>jjjd</p>
+            ) : (
+              <p className="text-gray-400 text-sm mt-2">
+                Checking login status...
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default page
+export default page;
