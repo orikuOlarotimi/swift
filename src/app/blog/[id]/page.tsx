@@ -1,15 +1,9 @@
-"use client";
-import React, { useState } from "react";
-import axios from "axios";
-// import toast from "react-hot-toast";
 import { notFound } from "next/navigation";
-import { LuShare } from "react-icons/lu";
-import { useAuthStore } from "@/utils/store/Auth";
+import axios from "axios";
+import BlogView from "../../../components/blogComponents/blogview";
 
 interface PageProps {
-  params: Promise<{
-    id: string;
-  }>;
+  params: { id: string };
 }
 
 export const fetchSingleBlog = async (id: string) => {
@@ -21,133 +15,30 @@ export const fetchSingleBlog = async (id: string) => {
     formData,
     {
       withCredentials: true,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      headers: { "Content-Type": "multipart/form-data" },
     }
   );
+
   if (!res.data?.success) {
-    // toast.error("unable to get blog info, please refresh the page ")
     throw new Error("Failed to fetch blog");
   }
+
   return res.data.data;
 };
 
-const page = async ({ params }: PageProps) => {
-  const { status } = useAuthStore();
-  const { id } = await params;
-  let blog;
+const Page = async ({ params }: PageProps) => {
+  const { id } = params;
 
+  let blog;
   try {
     blog = await fetchSingleBlog(id);
-  } catch (error) {
-    // toast.error("could not get blog info,please refresh the page");
-  }
-
-  if (!blog) {
+  } catch {
     notFound();
   }
 
-  const formatDate = (isoDate: string) => {
-    return new Date(isoDate).toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
+  if (!blog) notFound();
 
-  return (
-    <section className="">
-      <div className="w-full h-[682px] bg-[#F2F5FB] relative flex items-center justify-center">
-        <div className="w-[1000px] min-h-[753px]  flex flex-col items-center justify-between absolute top-[119px]">
-          <h1 className="font-inter text-[60px] text-[#020827]">
-            {blog.heading}
-          </h1>
-          <p className="font-inter text-[14px] text-[#020827] uppercase  bg-[#FFFFFF] py-[5px] px-[10px]">
-            {blog.categories[0]}
-          </p>
-          <img
-            src={blog.image || "/defaultBlog.jpg"}
-            alt="User blog Image"
-            className="object-cover w-full h-[500px] rounded-[12px]"
-            loading="lazy"
-          />
-        </div>
-      </div>
-
-      <div className="mt-[265px] border border-black w-[800px] min-h-[894px] w-full flex items-center justify-center">
-        <div className=" w-[800px] min-h-[894px] border border-red-500 flex flex-col items-start justify-between">
-          <div className="w-full h-[41px] flex items-center justify-between">
-            <div className="min-w-[241px] h-full flex items-center justify-between">
-              <img
-                src={blog.authorImage || "/defaultAvatar.jpg"}
-                alt="Author avatar"
-                className="object-cover w-[40px] h-[40px] rounded-[50%]"
-                loading="lazy"
-              />
-              <p className="font-inter text-[16px] leading-[170%] text-[#020827] mx-[15px]">
-                {blog.authorName}
-              </p>
-              <button className="font-inter text-[16px] text-[#FFFFFF] rounded-[6px] bg-[#1C5ADF] text-center w-[89px] h-full">
-                Follow
-              </button>
-            </div>
-            <div className="min-w-[269px] h-[27px] flex items-center justify-between">
-              <p className="text-[16px] font-inter leading-[170%] text-[#020827]">
-                {" "}
-                Published <span>{formatDate(blog.date)}</span>
-              </p>
-              <button className="h-[20px] flex items-center justify-center">
-                <LuShare size={20} className="text-[#1C5ADF] font-inter" />
-              </button>
-            </div>
-          </div>
-
-          <div className="w-full min-h-[200px] flex flex-col justify-between items-start border border-black mt-[100px]">
-            <p className="font-inter text-[18px] leading-[170%] text-[#747788]">
-              {blog.body}
-            </p>
-            <div className="mt-[10px]">
-              <h2 className="font-inter text-[30px] leading-[170%] font-[600] text-[#020827]">
-                Key Takeaways
-              </h2>
-              {blog.keyTakeaways?.length ? (
-                <ul>
-                  {blog.keyTakeaways.map((item: any, index: number) => (
-                    <li
-                      key={index}
-                      className="font-inter text-[18px] leading-[170%] text-[#747788]"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-sm text-gray-500">
-                  No key takeaways provided.
-                </p>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <h1 className="font-inter font-[600] text-[50px] text-[#020827] ">
-              Comments ({blog.comments?.length || 0})
-            </h1>
-            {status === "authenticated" ? (
-              <p>kdkdkdkddk</p>
-            ) : status === "unauthenticated" ? (
-              <p>jjjd</p>
-            ) : (
-              <p className="text-gray-400 text-sm mt-2">
-                Checking login status...
-              </p>
-            )}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <BlogView blog={blog} />;
 };
 
-export default page;
+export default Page;
