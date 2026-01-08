@@ -33,7 +33,7 @@ const BlogView = ({ blog }: { blog: any }) => {
 
       {/* BODY */}
       <div className="mt-[265px] w-full flex justify-center">
-        <div className="w-[800px] min-h-[250px] flex flex-col gap-[80px] items-start justify-between border border-red-400">
+        <div className="w-[800px] min-h-[250px] flex flex-col gap-[80px] items-start justify-between">
           {/* AUTHOR */}
           <div className="w-full h-[41px] flex items-center justify-between ">
             <div className="min-w-[241px] h-full flex items-center justify-between">
@@ -87,6 +87,15 @@ const BlogView = ({ blog }: { blog: any }) => {
 
           {/* COMMENTS (CLIENT) */}
           <CommentsSection blog={blog} />
+        </div>
+      </div>
+
+      <div className="border border-black h-[300px] w-full">
+        <div>
+          <h1 className="font-inter font-[600] text-[50px] text-[#020827]">
+            Related articles
+          </h1>
+          <button> </button>
         </div>
       </div>
     </section>
