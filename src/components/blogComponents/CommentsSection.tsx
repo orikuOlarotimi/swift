@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useModal } from "@/app/hooks/useModal";
 import { useAuthStore } from "@/utils/store/Auth";
 
+
 const CommentsSection = ({ blog }: { blog: any }) => {
     const { status } = useAuthStore();
     const [comment, setComment] = useState("")
@@ -15,7 +16,7 @@ const CommentsSection = ({ blog }: { blog: any }) => {
       </h1>
 
       {status === "authenticated" ? (
-        <div className="flex flex-col items-start justify-between min-h-[200px] w-full">
+        <div className="flex flex-col items-start justify-between min-h-[200px] w-full mt-[60px]">
           <div className="h-[115px] w-full flex flex-col items-start justify-between">
             <div className="flex items-center justify-between gap-[15px]">
               <img
@@ -36,7 +37,7 @@ const CommentsSection = ({ blog }: { blog: any }) => {
           </div>
         </div>
       ) : status === "unauthenticated" ? (
-        <div className="flex flex-col justify-between items-start w-full h-[100px]">
+        <div className="flex flex-col justify-between items-start w-full h-[100px] mt-[60px]">
           <p className="text-[18px] font-inter text-[#020827]">
             Want to share your thoughts?
           </p>

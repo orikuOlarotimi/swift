@@ -1,6 +1,6 @@
 import { LuShare } from "react-icons/lu";
 import CommentsSection from "../../components/blogComponents/CommentsSection";
-
+import Link from "next/link";
 const formatDate = (isoDate: string) => {
   return new Date(isoDate).toLocaleDateString("en-US", {
     month: "long",
@@ -66,13 +66,18 @@ const BlogView = ({ blog }: { blog: any }) => {
               {blog.body}
             </p>
 
-            <div className="mt-10">
-              <h2 className="text-[30px] font-[600]">Key Takeaways</h2>
+            <div className="mt-[10px]">
+              <h2 className="text-[30px] font-[600] font-inter leading-[170%] text-[#020827]">
+                Key Takeaways
+              </h2>
 
               {blog.keyTakeaways?.length ? (
                 <ul className="list-disc pl-5">
                   {blog.keyTakeaways.map((item: string, i: number) => (
-                    <li key={i} className="text-[#747788] text-[18px]">
+                    <li
+                      key={i}
+                      className="text-[#747788] text-[18px] font-inter leading-[170%]"
+                    >
                       {item}
                     </li>
                   ))}
@@ -90,13 +95,19 @@ const BlogView = ({ blog }: { blog: any }) => {
         </div>
       </div>
 
-      <div className="border border-black h-[300px] w-full">
-        <div>
+      <div className="border border-black h-[795px] w-full px-[20px] flex flex-col items-center justify-around">
+        <div className="flex items-center justify-between w-full h-[41px]">
           <h1 className="font-inter font-[600] text-[50px] text-[#020827]">
             Related articles
           </h1>
-          <button> </button>
+          <Link
+            href="/"
+            className="bg-[#1C5ADF] w-[120px] h-[41px] text-center rounded-[6px] text-[#FFFFFF] font-inter text-[16px] flex items-center justify-center"
+          >
+            Go To Blog
+          </Link>
         </div>
+        <div className="w-full h-[474px] w-full border border-black"></div>
       </div>
     </section>
   );
