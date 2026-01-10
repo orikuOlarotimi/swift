@@ -95,7 +95,7 @@ const BlogView = ({ blog }: { blog: any }) => {
         </div>
       </div>
 
-      <div className="border border-black h-[795px] w-full px-[20px] flex flex-col items-center justify-around">
+      <div className="border border-black h-[795px] w-full px-[80px] flex flex-col items-center justify-around">
         <div className="flex items-center justify-between w-full h-[41px]">
           <h1 className="font-inter font-[600] text-[50px] text-[#020827]">
             Related articles

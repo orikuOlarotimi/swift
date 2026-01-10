@@ -5,6 +5,7 @@ import { Blog } from "../../utils/types/blog";
 import toast from "react-hot-toast";
 import { BsArrowDown } from "react-icons/bs";
 import Link from "next/link";
+import LocalLoader from "@/components/LocalLoader";
 
 export const fetchAllBlogs = async (): Promise<{
   blogs: Blog[];
@@ -70,7 +71,7 @@ const blogMain = () => {
         setBlogs(res.blogs);
         setNextCursor(res.nextCursor ?? null);
       } catch (err) {
-        toast.error("Unable to load blogs");
+        toast.error("Unable to load blogs,please refresh");
       } finally {
         setLoading(false);
       }
@@ -103,7 +104,8 @@ const blogMain = () => {
   };
 
   return (
-    <div className="w-full min-h-[1452px] flex flex-col items-center justify-between">
+    <div className="w-full min-h-[52px] flex flex-col items-center justify-between relative">
+      <LocalLoader open={loading} />
       <section className="w-full flex items-center justify-center min-h-[1010px]">
         <div
           className="

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useAuthStore } from "../utils/store/Auth";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -12,7 +12,7 @@ export const AuthInitializer = ({
   children: React.ReactNode;
 }) => {
   const { setUser, clearUser, setStatus, status} = useAuthStore();
-
+    const [ready, setReady] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
 
@@ -41,6 +41,7 @@ export const AuthInitializer = ({
         clearUser();
       } finally {
         clearTimeout(timeoutId);
+        setReady(true);
       }
     };
 
@@ -52,6 +53,9 @@ export const AuthInitializer = ({
     };
   }, [setUser, clearUser, setStatus]);
 
+    if (!ready) {
+      return <LoadingOverlay open={true} />;
+    }
   return (
     <>
       <LoadingOverlay open={status === "loading"} />
