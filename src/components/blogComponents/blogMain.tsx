@@ -6,17 +6,14 @@ import toast from "react-hot-toast";
 import { BsArrowDown } from "react-icons/bs";
 import Link from "next/link";
 import LocalLoader from "@/components/LocalLoader";
+import api from "@/utils/api";
+
 
 export const fetchAllBlogs = async (): Promise<{
   blogs: Blog[];
   nextCursor?: string;
 }> => {
-  const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_API_BASE_URL}/blog/all-blogs`,
-    {},
-    { withCredentials: true }
-  );
-
+  const res = await api.post("/blog/all-blogs", {});
   if (!res.data?.success) {
     throw new Error("Failed to fetch blogs");
   }
