@@ -27,7 +27,7 @@ export const fetchSingleBlog = async (id: string) => {
 };
 
 const Page = async ({ params }: PageProps) => {
-  const { id } = params;
+  const { id } = await params;
 
   let blog;
   try {

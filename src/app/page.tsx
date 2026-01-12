@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="min-h-[600px] flex flex-col  items-center justify-around w-full px-[80px] pb-[100px] border border-black">
+      <div className="min-h-[600px] flex flex-col  items-center justify-around w-full px-[80px] pb-[100px]">
         <div className="w-full h-[61px] flex justify-between items-center my-[80px]">
           <h1 className="font-inter text-[50px] font-[600] tracking-normal leading-none text-[#020827]">
             Articles
