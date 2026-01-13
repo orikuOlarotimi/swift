@@ -1,11 +1,11 @@
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
 import Forms from "../../components/profileComponents/profileInfoForm";
 import ProfilePasswordForm from "@/components/profileComponents/profilePasswordForm";
 import DeleteAccount from "@/components/profileComponents/deleteAccount";
+import UserInfoImage from "@/components/profileComponents/userInfoImage";
 
 const page = () => {
+
   return (
     <div>
       <div className="h-[224px] bg-[#F2F5FB] flex items-center justify-center w-full px-[80px]">
@@ -19,21 +19,7 @@ const page = () => {
       <div className="h-[1312px] flex items-center justify-center w-full px-[80px]">
         <div className="w-full  h-full flex flex-col items-center justify-around">
           <div className="w-full flex items-center justify-start h-[100px]">
-            <div className="w-[288px] h-full flex justify-between items-center">
-              <Image
-                src="/profile.jpg"
-                alt="Picture of the author"
-                width={100}
-                height={100}
-                className="rounded-[50%]"
-              />
-              <Link
-                href="/"
-                className="w-[148] h-[27px] font-inter font-normal text-[16px] leading-[170%] tracking-normal underline decoration-solid decoration-[#020827]"
-              >
-                Upload new picture
-              </Link>
-            </div>
+            <UserInfoImage/>
           </div>
 
           <div className="w-full h-[277px]">
