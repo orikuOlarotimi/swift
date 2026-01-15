@@ -3,6 +3,8 @@ import Forms from "../../components/profileComponents/profileInfoForm";
 import ProfilePasswordForm from "@/components/profileComponents/profilePasswordForm";
 import DeleteAccount from "@/components/profileComponents/deleteAccount";
 import UserInfoImage from "@/components/profileComponents/userInfoImage";
+import { redirect } from "next/navigation";
+
 
 const page = () => {
 
