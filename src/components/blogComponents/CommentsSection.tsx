@@ -11,7 +11,7 @@ const CommentsSection = ({ blog }: { blog: any }) => {
 
   return (
     <div className="min-h-[194px] w-full flex flex-col items-start justify-between">
-      <h1 className="font-inter font-[600] text-[50px] text-[#020827]">
+      <h1 className="font-inter font-[600] text-[50px] text-[#020827] leading-none">
         Comments ({blog.comments?.length || 0})
       </h1>
 
@@ -37,12 +37,12 @@ const CommentsSection = ({ blog }: { blog: any }) => {
           </div>
         </div>
       ) : status === "unauthenticated" ? (
-        <div className="flex flex-col justify-between items-start w-full h-[100px] mt-[60px]">
+        <div className="flex flex-col justify-between items-start w-full h-[100px]">
           <p className="text-[18px] font-inter text-[#020827]">
             Want to share your thoughts?
           </p>
           <button
-            className="rounded-[6px] bg-[#1C5ADF] text-center text-[16px] font-inter text-[#FFFFFF] h-[41px] w-[100px]"
+            className="rounded-[6px] bg-[#1C5ADF] text-center text-[16px] font-inter text-[#FFFFFF] h-[41px] w-[100px] cursor-pointer"
             onClick={() => openModal("signup")}
           >
             Signup

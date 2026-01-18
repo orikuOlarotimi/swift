@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const token = request.cookies.get("accessToken");
+  const token = request.cookies.get("access_token");
+  console.log(token, "hello world")
 
   // if (!token && request.nextUrl.pathname.startsWith("/profile")) {
   //   return NextResponse.redirect(new URL("/", request.url));

@@ -1,13 +1,10 @@
 "use client";
 import React from "react";
 import SearchChat from "../../components/chatComponents/searchChat";
-import RecentChats from "../../components/chatComponents/recentChats"
+import RecentChats from "../../components/chatComponents/recentChats";
 import SendMessage from "@/components/chatComponents/sendMessage";
 
-
-
 const page = () => {
-
   return (
     <div>
       <div className="h-[224px] bg-[#F2F5FB] flex items-center justify-center w-full px-[80px]">
@@ -24,7 +21,7 @@ const page = () => {
             <SearchChat />
           </div>
 
-          <RecentChats/>
+          <RecentChats />
         </div>
 
         <div className="flex-1 h-full">
@@ -49,8 +46,8 @@ const page = () => {
             </div>
           </div>
           <div className="h-[750px]  w-full"></div>
-          <div >
-            <SendMessage/>
+          <div>
+            <SendMessage />
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ const BlogView = ({ blog }: { blog: any }) => {
     <section>
       {/* HERO */}
       <div className="w-full h-[682px] bg-[#F2F5FB] relative flex items-center justify-center">
-        <div className="w-[1000px] min-h-[753px] flex flex-col items-center justify-between absolute top-[119px]">
+        <div className="w-[1000px] min-h-[700px] flex flex-col items-center justify-between absolute top-[119px]">
           <h1 className="font-inter text-[60px] text-[#020827]">
             {blog.heading}
           </h1>
@@ -33,7 +33,7 @@ const BlogView = ({ blog }: { blog: any }) => {
 
       {/* BODY */}
       <div className="mt-[265px] w-full flex justify-center">
-        <div className="w-[800px] min-h-[250px] flex flex-col gap-[80px] items-start justify-between">
+        <div className="w-[800px] min-h-[150px] flex flex-col gap-[50px] items-start justify-between">
           {/* AUTHOR */}
           <div className="w-full h-[41px] flex items-center justify-between ">
             <div className="min-w-[241px] h-full flex items-center justify-between">

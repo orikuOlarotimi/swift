@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import Forms from "../../components/profileComponents/profileInfoForm";
 import ProfilePasswordForm from "@/components/profileComponents/profilePasswordForm";
@@ -7,9 +5,7 @@ import DeleteAccount from "@/components/profileComponents/deleteAccount";
 import UserInfoImage from "@/components/profileComponents/userInfoImage";
 import { redirect } from "next/navigation";
 
-
 const page = () => {
-
   return (
     <div>
       <div className="h-[224px] bg-[#F2F5FB] flex items-center justify-center w-full px-[80px]">
@@ -23,7 +19,7 @@ const page = () => {
       <div className="h-[1312px] flex items-center justify-center w-full px-[80px]">
         <div className="w-full  h-full flex flex-col items-center justify-around">
           <div className="w-full flex items-center justify-start h-[100px]">
-            <UserInfoImage/>
+            <UserInfoImage />
           </div>
 
           <div className="w-full h-[277px]">
@@ -41,7 +37,7 @@ const page = () => {
 
             <ProfilePasswordForm />
           </div>
-            <DeleteAccount/>
+          <DeleteAccount />
         </div>
       </div>
     </div>
