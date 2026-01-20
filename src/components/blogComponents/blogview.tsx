@@ -33,10 +33,10 @@ const BlogView = ({ blog }: { blog: any }) => {
 
       {/* BODY */}
       <div className="mt-[265px] w-full flex justify-center">
-        <div className="w-[800px] min-h-[150px] flex flex-col gap-[50px] items-start justify-between">
+        <div className="w-[800px] min-h-[150px] flex flex-col items-start justify-between">
           {/* AUTHOR */}
-          <div className="w-full h-[41px] flex items-center justify-between ">
-            <div className="min-w-[241px] h-full flex items-center justify-between">
+          <div className="w-full h-[41px] flex items-center justify-between mb-[100px]">
+            <div className="min-w-[241px] h-full flex items-center justify-between" >
               <img
                 src={blog.authorImage || "/defaultAvatar.jpg"}
                 className="w-[40px] h-[40px] rounded-full object-cover"
@@ -61,8 +61,8 @@ const BlogView = ({ blog }: { blog: any }) => {
           </div>
 
           {/* CONTENT */}
-          <div className=" w-full">
-            <p className="font-inter text-[18px] leading-[170%] text-[#747788]">
+          <div className="w-full mb-[100px]" >
+            <p className="font-inter text-[18px] leading-[170%] text-[#747788] mb-[30px]">
               {blog.body}
             </p>
 

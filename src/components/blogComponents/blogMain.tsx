@@ -101,9 +101,9 @@ const blogMain = () => {
   };
 
   return (
-    <div className="w-full min-h-[52px] flex flex-col items-center justify-between relative">
+    <div className="w-full min-h-[100px] flex flex-col items-center justify-between relative">
       <LocalLoader open={loading} />
-      <section className="w-full flex items-center justify-center min-h-[1010px]">
+      <section className="w-full flex items-center justify-center min-h-[100px]">
         <div
           className="
           grid
