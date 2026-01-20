@@ -29,7 +29,7 @@ export const AuthInitializer = ({
           {
             withCredentials: true,
             signal: controller.signal,
-          }
+          },
         );
 
         if (data?.success && data?.data) {
@@ -37,7 +37,7 @@ export const AuthInitializer = ({
         } else {
           clearUser();
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
         clearUser();
       } finally {
         clearTimeout(timeoutId);

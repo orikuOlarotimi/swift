@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 
-const profilePasswordForm = () => {
+const ProfilePasswordForm = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
@@ -146,4 +146,4 @@ const profilePasswordForm = () => {
   );
 };
 
-export default profilePasswordForm;
+export default ProfilePasswordForm;

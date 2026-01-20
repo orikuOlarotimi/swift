@@ -8,7 +8,6 @@ import Link from "next/link";
 import LocalLoader from "@/components/LocalLoader";
 import api from "@/utils/api";
 
-
 export const fetchAllBlogs = async (): Promise<{
   blogs: Blog[];
   nextCursor?: string;
@@ -25,7 +24,7 @@ export const fetchAllBlogs = async (): Promise<{
 };
 
 export const fetchMoreBlogs = async (
-  cursor: string
+  cursor: string,
 ): Promise<{
   blogs: Blog[];
   nextCursor?: string;
@@ -41,7 +40,7 @@ export const fetchMoreBlogs = async (
       headers: {
         "Content-Type": "multipart/form-data",
       },
-    }
+    },
   );
 
   if (!res.data?.success) {
@@ -54,8 +53,7 @@ export const fetchMoreBlogs = async (
   };
 };
 
-
-const blogMain = () => {
+const BlogMain = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
@@ -92,7 +90,7 @@ const blogMain = () => {
     }
   };
 
- const formatDate = (isoDate: string) => {
+  const formatDate = (isoDate: string) => {
     return new Date(isoDate).toLocaleDateString("en-US", {
       month: "short",
       day: "numeric",
@@ -211,4 +209,4 @@ const blogMain = () => {
   );
 };
 
-export default blogMain;
+export default BlogMain;

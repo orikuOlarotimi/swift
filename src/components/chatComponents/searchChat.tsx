@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import { SlMagnifier } from "react-icons/sl";
 
-const searchChat = () => {
+const SearchChat = () => {
      const [value, setValue] = useState("")
        const handleSearch = () => {
          console.log("none");
@@ -26,4 +26,4 @@ const searchChat = () => {
   );
 };
 
-export default searchChat;
+export default SearchChat;

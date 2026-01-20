@@ -35,7 +35,7 @@ const updateProfile = async (data: UpdateProfilePayload) => {
   return res.data;
 };
 
-const forms = () => {
+const Forms = () => {
   const { user, setUser } = useAuthStore();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -162,4 +162,4 @@ const forms = () => {
   );
 };
 
-export default forms;
+export default Forms;

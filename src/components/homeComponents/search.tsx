@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { SlMagnifier } from "react-icons/sl";
 
-const search = () => {
+const Search = () => {
     const [value, setValue] = useState("");
 
     const handleSearch = () => {
@@ -26,4 +26,4 @@ const search = () => {
   );
 }
 
-export default search
+export default Search

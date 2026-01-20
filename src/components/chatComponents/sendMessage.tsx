@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { IoSend } from "react-icons/io5";
 
-const sendMessage = () => {
+const SendMessage = () => {
     const [message, setMessage] = useState("");
 
     const handleSend = () => {
@@ -40,4 +40,4 @@ const sendMessage = () => {
   );
 }
 
-export default sendMessage
+export default SendMessage

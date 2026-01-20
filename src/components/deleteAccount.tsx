@@ -4,7 +4,7 @@ import { ImWarning } from "react-icons/im";
 import { useModal } from "@/app/hooks/useModal";
 
 
-const deleteAccount = () => {
+const DeleteAccount = () => {
     const { closeModal } = useModal();
     return (
       <div className="w-[416px] h-[332px] flex flex-col items-center justify-between">
@@ -33,4 +33,4 @@ const deleteAccount = () => {
     );
 }
 
-export default deleteAccount
+export default DeleteAccount

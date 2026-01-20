@@ -2,7 +2,7 @@
 import React from 'react'
 import { useModal } from "@/app/hooks/useModal";
 
-const deleteAccount = () => {
+const DeleteAccount = () => {
     const { openModal } = useModal();
     return (
       <div className="border border-[#EF4444] p-[40px] flex flex-col items-start justify-between h-[253px] w-full">
@@ -23,4 +23,4 @@ const deleteAccount = () => {
     );
 }
 
-export default deleteAccount
+export default DeleteAccount

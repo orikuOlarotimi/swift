@@ -35,7 +35,7 @@ const chats = [
 ];
 
 
-const recentChats = () => {
+const RecentChats = () => {
      const truncateMessage = (msg: string) => {
         if (msg.length <= 20) return msg;
         return msg.substring(0, 20) + "...";
@@ -87,4 +87,4 @@ const recentChats = () => {
   )
 }
 
-export default recentChats
+export default RecentChats

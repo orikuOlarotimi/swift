@@ -12,5 +12,5 @@ export interface Blog {
   date: string;
   likeCount: number;
   isLikedByMe: boolean;
-  comments: any[];
+  comments: string[];
 }

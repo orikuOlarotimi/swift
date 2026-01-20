@@ -2,7 +2,7 @@
 import React from 'react'
 import Link from "next/link";
 import { useAuthStore } from "@/utils/store/Auth";
-const userInfoImage = () => {
+const UserInfoImage = () => {
   const { user, status } = useAuthStore();
   return (
     <div className="w-[288px] h-full flex justify-between items-center">
@@ -21,4 +21,4 @@ const userInfoImage = () => {
   );
 }
 
-export default userInfoImage
+export default UserInfoImage
