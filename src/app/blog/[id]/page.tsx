@@ -6,7 +6,7 @@ interface PageProps {
   params: { id: string };
 }
 
-export const fetchSingleBlog = async (id: string) => {
+const fetchSingleBlog = async (id: string) => {
   const formData = new FormData();
   formData.append("id", id);
 
